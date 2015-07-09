@@ -1,4 +1,6 @@
-FROM dockerfile/ubuntu
+FROM ubuntu
+RUN apt-get update && apt-get install -y wget
+RUN apt-get install -y ca-certificates
 
 # Get the host manager
 RUN wget https://github.com/lonelycode/tyk/releases/download/1.5/tyk-dashboard-amd64-v0.9.3.tar.gz

@@ -28,6 +28,11 @@ RUN apt-get update \
  && apt-get autoremove -y \
  && rm -rf /root/.cache
 
+# Force tyk-gateway to use upstart instead of systemd
+RUN apt-get install -y upstart \
+  && apt-get purge -y systemd \
+  && apt-get -y autoremove
+
 # The application RUN command is separated from the dependencies to enable app updates to use docker cache for the deps
 RUN echo "deb https://packagecloud.io/tyk/tyk-gateway/debian/ jessie main" | tee /etc/apt/sources.list.d/tyk_tyk-gateway.list \
  && apt-get update \
